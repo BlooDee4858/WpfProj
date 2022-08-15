@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.Design;
 
 namespace WpfProject.Model
 {
@@ -15,6 +17,14 @@ namespace WpfProject.Model
         public decimal Salary { get; set; }
         public int DepartmentID { get; set; }
         public virtual Department Department { get; set; }
+        [NotMapped]
+        public Department DepartmentName
+        {
+            get
+            {
+                return DataWorker.GetDepartmentById(DepartmentID);
+            }
+        }
 
     }
 }

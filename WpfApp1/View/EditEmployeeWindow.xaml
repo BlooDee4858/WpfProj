@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProject.View"
         mc:Ignorable="d"
-        Title="EditEmployeeWindow" Height="450" Width="800">
+        Title="EditEmployeeWindow" Height="450" Width="800"
+        Name="editEmployeeWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,22 +17,24 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="First Name"/>
-            <TextBox Text=""/>
+            <TextBox x:Name="FirstName" Text="{Binding FirstName}"/>
             <TextBlock Text="Last Name"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding LastName}"/>
             <TextBlock Text="Patronymic"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Patronymic}"/>
             <TextBlock Text="Date of Birth"/>
-            <DatePicker Name="Birth"/>
+            <DatePicker Name="Birth" SelectedDate ="{Binding Birthday}"/>
             <TextBlock Text="Date of Employment"/>
-            <DatePicker Name="Employment"/>
+            <DatePicker Name="Employment" SelectedDate ="{Binding DateOfEmployment}"/>
             <TextBlock Text="Job Title"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding JobTitle}"/>
             <TextBlock Text="Department"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding AllDepartment}" SelectedItem="{Binding SelectDepartment}" DisplayMemberPath="Name"/>
             <TextBlock Text="Salary"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Salary}"/>
         </StackPanel>
-        <Button Grid.Row = "1" Content="Edit Employee"/>
+        <Button Grid.Row = "1" Content="Edit Employee"
+                Command="{Binding EditEmployee}"
+                CommandParameter="{Binding ElementName=editEmployeeWindow}"/>
     </Grid>
 </Window>

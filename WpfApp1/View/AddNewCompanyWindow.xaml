@@ -17,13 +17,11 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name"/>
-            <TextBox Name="NameBlock" Text="{Binding CompanyName}"/>
+            <TextBox Name="CompanyName" Text="{Binding CompanyName}"/>
             <TextBlock Text="Found"/>
             <DatePicker SelectedDate="{Binding FoundationDate}"/>
             <TextBlock Text="Address"/>
             <TextBox Text="{Binding CompanyAddress}"/>
-            <TextBlock Text="Departments"/>
-            <ListBox/>
         </StackPanel>
         <Button Grid.Row = "1" Content="Add Company" Command="{Binding AddNewCompany}" CommandParameter="{Binding ElementName=addNewCompanyWindow}"/>
     </Grid>

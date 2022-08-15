@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfProject.Model;
+using WpfProject.ViewModel;
 
 namespace WpfProject.View
 {
@@ -19,9 +21,14 @@ namespace WpfProject.View
     /// </summary>
     public partial class EditCompanyWindow : Window
     {
-        public EditCompanyWindow()
+        public EditCompanyWindow(Company company)
         {
             InitializeComponent();
+            DataContext = new DataManageVM();
+            DataManageVM.SelectCompany = company;
+            DataManageVM.CompanyName = company.Name;
+            DataManageVM.FoundationDate = company.Foundation;
+            DataManageVM.CompanyAddress = company.Address;
         }
     }
 }

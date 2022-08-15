@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +17,13 @@ namespace WpfProject.Model
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
         public List<Employee> Employees { get; set; }
+        [NotMapped]
+        public Company CompanyName
+        {
+            get
+            {
+                return DataWorker.GetCompanyById(CompanyId);
+            }
+        }
     }
 }

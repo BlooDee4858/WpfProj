@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfProject.Model;
+using WpfProject.ViewModel;
 
 namespace WpfProject.View
 {
@@ -19,9 +21,18 @@ namespace WpfProject.View
     /// </summary>
     public partial class EditEmployeeWindow : Window
     {
-        public EditEmployeeWindow()
+        public EditEmployeeWindow(Employee employee)
         {
             InitializeComponent();
+            DataContext = new DataManageVM();
+            DataManageVM.SelectedEmployee = employee;
+            DataManageVM.FirstName = employee.FirstName;
+            DataManageVM.LastName = employee.LastName;  
+            DataManageVM.Patronymic = employee.Patronymic;
+            DataManageVM.Birthday = employee.Birthday;
+            DataManageVM.DateOfEmployment = employee.DateOfEmployment;
+            DataManageVM.JobTitle = employee.JobTitle;
+            DataManageVM.Salary = employee.Salary;
         }
     }
 }

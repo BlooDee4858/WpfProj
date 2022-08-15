@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProject.View"
         mc:Ignorable="d"
-        Title="AddNewDepartmentWindow" Height="400" Width="500">
+        Title="AddNewDepartmentWindow" Height="400" Width="500"
+        Name="addNewDepartmentWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,10 +17,12 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name"/>
-            <TextBox Text=""/>
+            <TextBox x:Name="DepartmentName" Text="{Binding DepartmentName}"/>
             <TextBlock Text="Head"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Head}"/>
+            <TextBlock Text="Company"/>
+            <ComboBox ItemsSource="{Binding AllCompany}" SelectedItem="{Binding SelectCompany}" DisplayMemberPath="Name"/>
         </StackPanel>
-        <Button Grid.Row = "1" Content="Add Department"/>
+        <Button Grid.Row = "1" Content="Add Department" Command="{Binding AddNewDepartment}" CommandParameter="{Binding ElementName=addNewDepartmentWindow}"/>
     </Grid>
 </Window>

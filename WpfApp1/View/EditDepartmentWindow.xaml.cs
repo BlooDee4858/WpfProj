@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfProject.Model;
+using WpfProject.ViewModel;
 
 namespace WpfProject.View
 {
@@ -19,9 +21,13 @@ namespace WpfProject.View
     /// </summary>
     public partial class EditDepartmentWindow : Window
     {
-        public EditDepartmentWindow()
+        public EditDepartmentWindow(Department department)
         {
             InitializeComponent();
+            DataContext = new DataManageVM();
+            DataManageVM.SelectedDepartment = department;
+            DataManageVM.DepartmentName = department.Name;
+            DataManageVM.Head = department.Head;
         }
     }
 }

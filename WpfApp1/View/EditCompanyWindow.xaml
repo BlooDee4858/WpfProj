@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProject.View"
         mc:Ignorable="d"
-       Title="EditCompanyWindow" Height="400" Width="500">
+       Title="EditCompanyWindow" Height="400" Width="500"
+        Name="editCompanyWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,14 +17,14 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding CompanyName}"/>
             <TextBlock Text="Found"/>
-            <DatePicker Name="Found"/>
+            <DatePicker Name="Found" SelectedDate="{Binding FoundationDate}"/>
             <TextBlock Text="Address"/>
-            <TextBox Text=""/>
-            <TextBlock Text="Departments"/>
-            <ListBox/>
+            <TextBox Text="{Binding CompanyAddress}"/>
         </StackPanel>
-        <Button Grid.Row = "1" Content="Edit Company"/>
+        <Button Grid.Row = "1" Content="Edit Company"
+                Command="{Binding EditCompany}"
+                CommandParameter="{Binding ElementName=editCompanyWindow}"/>
     </Grid>
 </Window>

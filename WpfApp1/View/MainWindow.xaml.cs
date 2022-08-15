@@ -21,10 +21,16 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ListView AllCompanysView;
+        public static ListView AllDepartmentsView;
+        public static ListView AllEmployeesView;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new DataManageVM();
+            AllCompanysView = ViewAllCompanys;
+            AllDepartmentsView = ViewAllDepartments;
+            AllEmployeesView = ViewAllEmployees; 
         }
     }
 }

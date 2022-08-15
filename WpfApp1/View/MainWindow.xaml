@@ -11,18 +11,32 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0">
+        <TabControl Grid.Row="0" SelectedItem="{Binding SelectedTabItem}">
+            <!--<TabItem Name = "TreeTab">
+                <TreeView ="{Binding CompanyTree}">
+                    <TreeViewItem ItemsSource="{Binding DepartmentTree}">
+                        <TreeViewItem ItemsSource="{Binding EmployeeTree}"/>
+                    </TreeViewItem>
+                </TreeView>
+            </TabItem>-->
             <TabItem Name = "CompanyTab">
                 <TabItem.Header>
                     <TextBlock Text="Company"/>
                 </TabItem.Header>
-                <ListView ItemsSource="{Binding AllCompany}">
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding EditItem}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllCompanys" ItemsSource="{Binding AllCompany}"
+                          SelectedItem="{Binding SelectedCompany}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Founded in"/>
-                            <GridViewColumn Header="Address"/>
-                            <GridViewColumn Header="Departments"/>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Founded" DisplayMemberBinding="{Binding Path=Foundation}"/>
+                            <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Path=Address}"/>
+                            <!--<GridViewColumn Header="Departments"/>-->
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -31,12 +45,20 @@
                 <TabItem.Header>
                     <TextBlock Text="Department"/>
                 </TabItem.Header>
-                <ListView ItemsSource="{Binding AllDepartment}">
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding EditItem}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllDepartments" ItemsSource="{Binding AllDepartment}"
+                          SelectedItem="{Binding SelectedDepartment}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Head"/>
-                            <GridViewColumn Header="Employees"/>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Head" DisplayMemberBinding="{Binding Path=Head}"/>
+                            <GridViewColumn Header="Company" DisplayMemberBinding="{Binding Path=CompanyName.Name}"/>
+                            <!--<GridViewColumn Header="Employees"/>-->
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -45,17 +67,24 @@
                 <TabItem.Header>
                     <TextBlock Text="Employee"/>
                 </TabItem.Header>
-                <ListView ItemsSource="{Binding allEmployee}">
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding EditItem}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllEmployees" ItemsSource="{Binding AllEmployee}"
+                          SelectedItem="{Binding SelectedEmployee}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="FirstName"/>
-                            <GridViewColumn Header="LastName"/>
-                            <GridViewColumn Header="Patronymic"/>
-                            <GridViewColumn Header="Birthday"/>
-                            <GridViewColumn Header="DateOfEmployment"/>
-                            <GridViewColumn Header="JobTitle"/>
-                            <GridViewColumn Header="Salary"/>
-                            <GridViewColumn Header="Department"/>
+                            <GridViewColumn Header="FirstName" DisplayMemberBinding ="{Binding Path=FirstName}"/>
+                            <GridViewColumn Header="LastName" DisplayMemberBinding="{Binding Path=LastName}"/>
+                            <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Path=Patronymic}"/>
+                            <GridViewColumn Header="Birthday" DisplayMemberBinding="{Binding Path=Birthday}"/>
+                            <GridViewColumn Header="DateOfEmployment" DisplayMemberBinding="{Binding Path=DateOfEmployment}"/>
+                            <GridViewColumn Header="JobTitle" DisplayMemberBinding="{Binding Path=JobTitle}"/>
+                            <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Path=Salary}"/>
+                            <GridViewColumn Header="Department" DisplayMemberBinding="{Binding Path=DepartmentName.Name}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

@@ -73,12 +73,12 @@ namespace WpfProject.Model
                 if (!checkIsExist)
                 {
                     Department department = new Department
-                    { 
+                    {
                         Name = name
                         ,Head = head
-                        ,CompanyId = company.Id 
+                        ,CompanyId = company.Id
                     };
-                    db.Companys.Add(company);
+                    db.Departments.Add(department);
                     db.SaveChanges();
                 }
             }
@@ -90,7 +90,7 @@ namespace WpfProject.Model
 
         //Создать рабочего :)
         public static string CreateEmployee(string firstName, string lastName, string patronymic, DateTime birthday,
-            DateTime dateOfEmployment, String jobTitle, decimal salary, Department department)
+            DateTime dateOfEmployment, String jobTitle, decimal salary, Department employeeDepartment)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -104,7 +104,7 @@ namespace WpfProject.Model
                         ,DateOfEmployment = dateOfEmployment
                         ,JobTitle = jobTitle
                         ,Salary = salary
-                        ,DepartmentID = department.Id
+                        ,DepartmentID = employeeDepartment.Id
                     };
                     db.Employees.Add(employee);
                     db.SaveChanges();
@@ -185,5 +185,24 @@ namespace WpfProject.Model
             }
             return "Employee added successfully";
         }
+
+        //Получение по id
+        public static Company GetCompanyById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Company company = db.Companys.FirstOrDefault(x => x.Id == id);
+                return company;
+            }
+        }
+        public static Department GetDepartmentById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Department department = db.Departments.FirstOrDefault(x => x.Id == id);
+                return department;
+            }
+        }
+
     }
 }
